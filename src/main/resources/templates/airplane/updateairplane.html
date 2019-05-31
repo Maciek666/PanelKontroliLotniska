@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body  th:style="'background: url(/img/NieboXD.png) no-repeat center center fixed;'">
+
+
+<div class="container"  align="center">
+
+    <div class="row">
+        <div class="col-sm-6" style="min-height: 120px"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <form action="/updateairplane" method="post" id="form">
+
+                <input type="hidden" name="serialNo" th:value="${airplane.serialNo}">
+
+                <div class="form-group">
+                    <label for="planeField">Model samolotu</label>
+                    <input class="form-control" id="planeField" rows="1" name="planeModel"
+                           th:value="${airplane.planeModel}" required/>
+                </div>
+
+                <div class="form-group">
+                    <label for="numberField">liczba miejsc</label>
+                    <input type="number" class="form-control" id="numberField" rows="1"  min="1" name="numberOfSeats"
+                           th:value="${airplane.numberOfSeats}" required/>
+                </div>
+                <!--
+
+                                <div class="form-group">
+                                    <label for="airportField">Lotnisko, wpisz recznie poprawna NAZWE inaczej lotnisko zmieni się na brak lotniska</label>
+                                    <input class="form-control" id="airportField" rows="1" name="airport"
+                                           th:value="${airplane.airportName}">
+                                </div>
+                -->
+
+
+                <div class="form-group">
+                    <label for="airportSelector">Wybierz lotnisko</label>
+                    <select class="form-control" id="airportSelector" name="airport">
+                        <option th:each="a : ${airports}"
+                                th:text="${a.name}"
+                                th:value="${a.name}"></option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary" form="form">aktualizuj produkt</button>
+
+                <button type="submit" class="btn btn-default" form="prod">wróć</button>
+
+            </form>
+
+
+            <form action="/airplanes" method="get" id="prod"></form>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<title>Title</title>
+    <link href="webjars/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="webjars/jquery/3.1.1/jquery.min.js"></script>
+
+</body>
+</html>

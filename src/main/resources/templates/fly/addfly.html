@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="webjars/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="webjars/jquery/3.1.1/jquery.min.js"></script>
+    <style>
+
+     </style>
+
+</head>
+<body th:style="'background: url(/img/NieboXD.png) no-repeat center center fixed;'">
+
+
+<div class="container" align="center">
+
+    <div class="row">
+        <div class="col-sm-6" style="min-height: 120px"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <form action="/addfly" method="post">
+                <div class="form-group">
+                    <label for="airplaneSelector">Wybierz samolot</label>
+                    <select class="form-control" id="airplaneSelector" name="airplane">
+                        <option th:each="a : ${airplane}" th:text="${a.serialNo}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="departureSelector">Wybierz lotnisko wylotu</label>
+                    <select class="form-control" id="departureSelector" name="airportDeparture">
+                        <option th:each="a : ${airports}" th:text="${a.name}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="arrivalSelector">Wybierz lotnisko przylotu</label>
+                    <select class="form-control" id="arrivalSelector" name="airportArrival">
+                        <option th:each="a : ${airports}" th:text="${a.name}"></option>
+                    </select>
+                </div>
+
+
+                <div>
+                    Data przylotu: <input type="datetime-local"
+                                         min="today" name="dateDeparture"/>
+                </div>
+                <div>
+                    Data wylotu: <input type="datetime-local" name="dateArrival"/>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">dodaj produkt</button>
+                <!--<a href="/products">cofnij do listy produktów</a>-->
+
+                <button type="submit" class="btn btn-default" form="prod">wróć</button>
+
+                <!--<div class="form-group">-->
+                <!--<label for="exampleFormControlTextarea1">Example textarea</label>-->
+                <!--<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>-->
+                <!--</div>-->
+            </form>
+
+            <!--tylko po to by obsluzyc przycis powrotu do listy produktów-->
+            <form action="/flights" method="get" id="prod"></form>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>
